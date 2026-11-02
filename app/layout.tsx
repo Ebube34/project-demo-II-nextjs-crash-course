@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import LightRays from "@/components/LightRays";
 import Navbar from "@/components/Navbar";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const SchibstedGrotesk = Schibsted_Grotesk({
   variable: "--font-schibsted-grotesk",
@@ -26,13 +26,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={cn("min-h-screen", "antialiased", SchibstedGrotesk.variable, MartianMono.variable, "font-sans", geist.variable)}
+      className={cn(
+        "min-h-screen",
+        "antialiased",
+        SchibstedGrotesk.variable,
+        MartianMono.variable,
+        "font-sans",
+        geist.variable,
+      )}
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
-        
-<div className="absolute inset-0 top-0 z-[-1] min-h-screen">
-  <LightRays
+
+        <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
+          <LightRays
             raysOrigin="top-center-offset"
             raysColor="#5dfeca"
             raysSpeed={1}
@@ -55,14 +62,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             cursorShadow
             clickPulse
             intro
-            lightMode={false} style={undefined}/>
-            </div>
-        
-        <main>
-        {children}
-        </main>
-        
-        </body>
+            lightMode={false}
+            style={undefined}
+          />
+        </div>
+
+        <main>{children}</main>
+      </body>
     </html>
   );
 }

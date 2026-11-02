@@ -20,6 +20,19 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## PostHog error tracking
+
+The client SDK captures browser exceptions, and the Next.js instrumentation hook captures server request errors. Production builds upload source maps and associate them with a release when `POSTHOG_API_KEY` and `POSTHOG_PROJECT_ID` are configured. Source maps are removed after upload.
+
+Set the following variables in `.env` for local development and in your deployment provider for production:
+
+- `NEXT_PUBLIC_POSTHOG_KEY`: PostHog project API key.
+- `NEXT_PUBLIC_POSTHOG_HOST`: PostHog host for your project.
+- `POSTHOG_API_KEY`: Personal API key with Error Tracking write access; keep this secret.
+- `POSTHOG_PROJECT_ID`: PostHog project ID used for source-map uploads.
+
+Source-map uploading is skipped when either server-only upload variable is missing. Build from a Git checkout so PostHog can associate the uploaded maps with the deployment's commit.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
