@@ -20,6 +20,7 @@ export interface Event {
 }
 
 const requiredText = {
+  type: String,
   required: true,
   trim: true,
   validate: {
