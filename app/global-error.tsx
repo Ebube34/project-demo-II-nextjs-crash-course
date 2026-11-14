@@ -1,14 +1,14 @@
 'use client'
 
-import NextError from 'next/error'
 import { useEffect } from 'react'
 import posthog from 'posthog-js'
 
 export default function GlobalError({
   error,
+  retry,
 }: {
   error: Error & { digest?: string }
-  reset: () => void
+  retry: () => void
 }) {
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
@@ -19,7 +19,11 @@ export default function GlobalError({
   return (
     <html lang="en">
       <body>
-        <NextError statusCode={0} />
+        <main>
+          <h1>Something went wrong</h1>
+          <p>The page could not be displayed. Please try again.</p>
+          <button type="button" onClick={retry}>Try again</button>
+        </main>
       </body>
     </html>
   )
